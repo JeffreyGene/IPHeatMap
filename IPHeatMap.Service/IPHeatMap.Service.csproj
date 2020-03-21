@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Services\Assets\GeoLite2-City-Blocks-IPv4.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Services\Assets\GeoLite2-City-Blocks-IPv4.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FileHelpers" Version="3.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IPHeatMap.Data\IPHeatMap.Data.csproj" />
+  </ItemGroup>
+
+</Project>

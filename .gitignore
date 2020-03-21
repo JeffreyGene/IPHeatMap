@@ -1,0 +1,10 @@
+IPHeatMap.Data/bin/
+IPHeatMap.Data/obj/
+IPHeatMap.Service/bin/
+IPHeatMap.Service/obj/
+IPHeatMap.Service/Services/Assets/
+
+TestServices/bin/
+TestServices/obj/
+
+TestResults/
