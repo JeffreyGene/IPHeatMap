@@ -30,7 +30,7 @@ import { MapComponent } from './map/map.component';
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [FetchDataComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

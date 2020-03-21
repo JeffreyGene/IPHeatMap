@@ -1,5 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import { FetchDataComponent } from '../fetch-data/fetch-data.component';
+import { HeatLayerPoint } from '../models/HeatLayerPoint';
 
 @Component({
   selector: 'app-map',
@@ -8,8 +10,18 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements AfterViewInit {
   private map: any;
+  private fetchData: FetchDataComponent;
+  private heatLayerPoints: string[][];
 
-  constructor() { }
+  constructor(fetchData: FetchDataComponent) {
+    this.fetchData = fetchData;
+  }
+
+  ngOnInit() {
+    this.fetchData.GetHeatLayerPoints().subscribe(result => {
+      this.heatLayerPoints = result.map(p => [p.Latitude, p.Longitude, p.Intensity]);
+    });
+  }
 
   ngAfterViewInit() {
     this.initMap();
@@ -21,9 +33,6 @@ export class MapComponent implements AfterViewInit {
       zoom: 15
     });
 
-    console.log('inside init');
-    console.log(this.map);
-
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -31,16 +40,6 @@ export class MapComponent implements AfterViewInit {
     
     tiles.addTo(this.map);
 
-    // L.heatLayer([[41.7354862, -111.834388, 0.5], // lat, lng, intensity
-    //   ], {radius: 1000}).addTo(this.map);
-
-    this.map.on('moveend', this.onMapMoveEnd);
-
-    console.log(this.map.getBounds());
-  }
-  
-  onMapMoveEnd(e) {
-    console.log('inside map move');
-    console.log(e);
+    // L.heatLayer(this.heatLayerPoints, {radius: 1000}).addTo(this.map);
   }
 }

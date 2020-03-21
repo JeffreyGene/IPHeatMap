@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HeatLayerPoint } from '../models/HeatLayerPoint';
 
 @Component({
   selector: 'app-fetch-data',
@@ -7,11 +8,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FetchDataComponent {
   public forecasts: WeatherForecast[];
+  private http: HttpClient;
+  private baseUrl: string;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+    // http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
+    //   this.forecasts = result;
+    // }, error => console.error(error));
+    this.http = http;
+    this.baseUrl = baseUrl;
+  }
+
+  GetHeatLayerPoints() {
+    return this.http.get<HeatLayerPoint[]>(this.baseUrl + 'api/HeatMap/GetHeatLayerPoints');
   }
 }
 
