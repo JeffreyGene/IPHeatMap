@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
-import { FetchDataComponent } from '../fetch-data/fetch-data.component';
+import { FetchDataService } from '../fetch-data/fetch-data-service';
 import { HeatLayerPoint } from '../models/HeatLayerPoint';
 
 @Component({
@@ -10,21 +10,58 @@ import { HeatLayerPoint } from '../models/HeatLayerPoint';
 })
 export class MapComponent implements AfterViewInit {
   private map: any;
-  private fetchData: FetchDataComponent;
+  private fetchData: FetchDataService;
   private heatLayerPoints: string[][];
 
-  constructor(fetchData: FetchDataComponent) {
+  constructor(fetchData: FetchDataService) {
     this.fetchData = fetchData;
   }
 
-  ngOnInit() {
-    this.fetchData.GetHeatLayerPoints().subscribe(result => {
-      this.heatLayerPoints = result.map(p => [p.Latitude, p.Longitude, p.Intensity]);
-    });
-  }
-
   ngAfterViewInit() {
-    this.initMap();
+    this.fetchData.GetHeatLayerPoints().subscribe(result => {
+      // this.heatLayerPoints = result.map(p => [p.Latitude, p.Longitude, p.Intensity]);
+      this.heatLayerPoints = [
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+        ['41.7354862', '-111.834388', '0.5'],
+      ]
+      this.initMap();
+    });
   }
 
   initMap() {
@@ -39,7 +76,15 @@ export class MapComponent implements AfterViewInit {
     });
     
     tiles.addTo(this.map);
-
-    // L.heatLayer(this.heatLayerPoints, {radius: 1000}).addTo(this.map);
+    //<script src="../../../node_modules/leaflet.heat/dist/leaflet-heat.js"></script>
+    var script = document.createElement('script');
+    script.onload = function() {
+      alert("Script loaded and ready");
+    };
+    script.src = "../../../node_modules/leaflet.heat/dist/leaflet-heat.js";
+    document.getElementsByTagName('head')[0].appendChild(script);
+    setTimeout(() => {
+      L.heatLayer(this.heatLayerPoints, {radius: 1000}).addTo(this.map);
+    });
   }
 }
