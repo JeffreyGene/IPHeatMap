@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
-// import * as L from 'leaflet';
 import { FetchDataService } from '../fetch-data/fetch-data-service';
+
+declare var L: any;
 
 @Component({
   selector: 'app-map',
