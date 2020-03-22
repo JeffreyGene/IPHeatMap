@@ -33,7 +33,7 @@
   "description": "A tiny and fast Leaflet heatmap plugin.",
   "devDependencies": {
     "simpleheat": "~0.2.0",
-    "uglify-js": "~2.4.15"
+    "uglify-js": "~3.8.0"
   },
   "homepage": "https://github.com/Leaflet/Leaflet.heat",
   "jshintConfig": {
