@@ -6,17 +6,17 @@ namespace IPHeatMap.Data.Models
 {
     public class HeatLayerPoint
     {
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
-        public string Intensity { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Intensity { get; set; }
 
         public static Func<IPv4, HeatLayerPoint> FromIPv4()
         {
             return i => new HeatLayerPoint
             {
-                Latitude = i.Latitude,
-                Longitude = i.Longitude,
-                Intensity = "0.5"
+                Latitude = double.Parse(i.Latitude),
+                Longitude = double.Parse(i.Longitude),
+                Intensity = 0.5
             };
         }
     }

@@ -1,5 +1,5 @@
 export interface HeatLayerPoint {
-    Latitude: string;
-    Longitude: string;
-    Intensity: string;
+    latitude: number;
+    longitude: number;
+    intensity: number;
   }

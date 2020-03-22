@@ -16,8 +16,10 @@ namespace IPHeatMap.Service.Services
 
         public IEnumerable<HeatLayerPoint> GetHeatLayerPoints()
         {
+            double outDec;
             return _fileParserService.ParseFile("../IPHeatMap.Service/Services/Assets/GeoLite2-City-Blocks-IPv4.csv")
-                .Select(HeatLayerPoint.FromIPv4());
+                .Where(p => double.TryParse(p.Longitude, out outDec) && double.TryParse(p.Latitude, out outDec))
+                .Select(HeatLayerPoint.FromIPv4()).OrderBy(p => p.Latitude).ThenBy(p => p.Longitude);
         }
     }
 }
