@@ -19,7 +19,7 @@ export class MapComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.fetchData.GetHeatLayerPoints().subscribe(result => {
-      this.heatLayerPoints = result.map(p => [p.latitude, p.longitude, p.intensity]);
+      this.heatLayerPoints = result.map(p => [p.latitude, p.longitude, 0.5]);
       this.initMap();
     });
   }

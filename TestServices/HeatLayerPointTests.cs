@@ -53,7 +53,6 @@ namespace TestServices
             Assert.AreEqual(3, result.Count(), "should return 3 records");
             Assert.AreEqual(result.FirstOrDefault().Latitude, "lat 1", "Latitude wrong");
             Assert.AreEqual(result.FirstOrDefault().Longitude, "long 1", "Longitude wrong");
-            Assert.AreEqual(result.FirstOrDefault().Intensity, "0.5", "Intensity wrong");
         }
     }
 }

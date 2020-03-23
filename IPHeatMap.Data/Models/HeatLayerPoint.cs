@@ -8,7 +8,6 @@ namespace IPHeatMap.Data.Models
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public double Intensity { get; set; }
 
         public static Func<IPv4, HeatLayerPoint> FromIPv4()
         {
@@ -16,7 +15,6 @@ namespace IPHeatMap.Data.Models
             {
                 Latitude = double.Parse(i.Latitude),
                 Longitude = double.Parse(i.Longitude),
-                Intensity = 0.5
             };
         }
     }

@@ -19,7 +19,7 @@ namespace IPHeatMap.Service.Services
             double outDec;
             return _fileParserService.ParseFile("../IPHeatMap.Service/Services/Assets/GeoLite2-City-Blocks-IPv4.csv")
                 .Where(p => double.TryParse(p.Longitude, out outDec) && double.TryParse(p.Latitude, out outDec))
-                .Select(HeatLayerPoint.FromIPv4()).OrderBy(p => p.Latitude).ThenBy(p => p.Longitude);
+                .Select(HeatLayerPoint.FromIPv4());
         }
     }
 }
